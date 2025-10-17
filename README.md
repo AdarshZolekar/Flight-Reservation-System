@@ -63,7 +63,7 @@ cd Flight-Reservation-System
 2. Run the program:
 ```
 python flightsystem.py
-
+```
 ---
 
 ## Sample Output
@@ -135,3 +135,4 @@ Feel free to open issues or submit pull requests for improvements or bug fixes!
     <img src="https://img.shields.io/badge/%E2%AC%86-Back%20to%20Top-blue?style=for-the-badge" alt="Back to Top"/>
   </a>
 </p>
+
