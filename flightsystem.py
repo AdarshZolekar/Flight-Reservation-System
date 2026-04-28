@@ -1,6 +1,16 @@
 import uuid
 
 class Flight:
+    """
+    Represents a single flight in the reservation system.
+
+    Attributes:
+        flight_id (str): Unique identifier for the flight.
+        source (str): Departure city.
+        destination (str): Arrival city.
+        price (int): Ticket price in INR.
+        seats (int): Number of available seats.
+    """
     def __init__(self, flight_id, source, destination, price, seats):
         self.flight_id = flight_id
         self.source = source
@@ -13,6 +23,9 @@ class Flight:
 
 
 class FlightReservationSystem:
+    """
+    Manages flight data, bookings, and cancellations.
+    """
     def __init__(self):
         self.flights = [
             Flight("AI101", "Pune", "Delhi", 4500, 5),
@@ -24,9 +37,21 @@ class FlightReservationSystem:
         self.reservations = {}
 
     def search_flights(self, destination):
+        """
+        Searches for flights based on the destination city.
+
+        Args:
+            destination (str): The destination city to search for.
+
+        Returns:
+            list: A list of Flight objects matching the destination.
+        """
         return [f for f in self.flights if f.destination.lower() == destination.lower()]
 
     def sort_flights_by_price(self):
+        """
+        Sorts the available flights by price in ascending order using Bubble Sort.
+        """
         n = len(self.flights)
         for i in range(n):
             for j in range(0, n - i - 1):
@@ -34,6 +59,16 @@ class FlightReservationSystem:
                     self.flights[j], self.flights[j + 1] = self.flights[j + 1], self.flights[j]
 
     def book_ticket(self, flight_id, passenger_name):
+        """
+        Books a ticket for a passenger on a specific flight.
+
+        Args:
+            flight_id (str): The ID of the flight to book.
+            passenger_name (str): The name of the passenger.
+
+        Returns:
+            str: A message indicating the result of the booking.
+        """
         for f in self.flights:
             if f.flight_id == flight_id:
                 if f.seats > 0:
@@ -46,6 +81,15 @@ class FlightReservationSystem:
         return "Invalid flight ID."
 
     def cancel_ticket(self, ticket_id):
+        """
+        Cancels an existing reservation.
+
+        Args:
+            ticket_id (str): The unique ID of the ticket to cancel.
+
+        Returns:
+            str: A message indicating the result of the cancellation.
+        """
         if ticket_id in self.reservations:
             flight_id = self.reservations[ticket_id]["flight"]
             for f in self.flights:
@@ -57,6 +101,9 @@ class FlightReservationSystem:
         return "Invalid ticket ID."
 
     def show_reservations(self):
+        """
+        Prints all current reservations to the console.
+        """
         if not self.reservations:
             print("No reservations found.")
         else:
@@ -64,15 +111,21 @@ class FlightReservationSystem:
                 print(f"Ticket ID: {t_id} | Passenger: {details['passenger']} | Flight: {details['flight']}")
 
     def show_all_flights(self):
+        """
+        Prints all available flights to the console.
+        """
         for f in self.flights:
             print(f)
 
 
 def main():
+    """
+    Main entry point for the Flight Reservation System console application.
+    """
     system = FlightReservationSystem()
 
     while True:
-        print("••• Flight Reservation System •••")
+        print("\n••• Flight Reservation System •••")
         print("1. View All Flights")
         print("2. Search Flights by Destination")
         print("3. Sort Flights by Price")
